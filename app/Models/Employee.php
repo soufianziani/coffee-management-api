@@ -9,12 +9,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Employee extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-        'Adress'
-    ];
-    public function Shift(): HasMany
+    protected $fillable = ['name', 'address'];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function shifts()
     {
         return $this->hasMany(Shift::class);
+    }
+
+    public function coffees()
+    {
+        return $this->belongsToMany(Coffee::class, 'shifts');
     }
 }

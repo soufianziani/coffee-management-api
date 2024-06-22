@@ -11,14 +11,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Coffee extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-        'locations'
-    ];
+    protected $fillable = ['name', 'location'];
 
-    public function Shift(): HasMany
+    public function tables()
+    {
+        return $this->hasMany(Table::class);
+    }
+
+    public function shifts()
     {
         return $this->hasMany(Shift::class);
     }
 
+    public function employees()
+    {
+        return $this->belongsToMany(Employee::class, 'shifts');
+    }
 }

@@ -15,4 +15,9 @@ class Product extends Model
         'sales_fees',
         'sales_mark_up'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
