@@ -64,6 +64,7 @@ class AdminController extends Controller
         return response()->json($coffee, 201);
     }
 
+    
 
     public function update(Request $request, $id)
     {
