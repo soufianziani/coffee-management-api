@@ -19,7 +19,7 @@ protected $fillable = [
 ];
 
 
-   
+
 }
 
 

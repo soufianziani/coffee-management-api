@@ -6,7 +6,9 @@ use App\Models\Admin;
 use App\Models\Coffee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\PersonalAccessToken;
+
 
 class AdminController extends Controller
 {
@@ -14,6 +16,7 @@ class AdminController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
+        $credentials['password'] = Hash::make($credentials['password']);
 
         if (Auth::guard('admin')->attempt($credentials)) {
             $admin = Auth::guard('admin')->user();
@@ -69,7 +72,7 @@ class AdminController extends Controller
         $coffee->update($request->all());
         return response()->json($coffee, 200);
     }
-    
+
 
     public function destroy(Request $request, $id)
     {
