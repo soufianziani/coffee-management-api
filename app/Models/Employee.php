@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Employee extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'address'];
+    protected $fillable = ['name', 'Adress'];
 
     public function orders()
     {
