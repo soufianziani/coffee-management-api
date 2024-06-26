@@ -10,6 +10,7 @@ use App\Http\Controllers\TableController;
 use App\Http\Controllers\CoffeeController;
 
 
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
@@ -23,3 +24,9 @@ Route::apiResource('categories', CategoryController::class);
 Route::apiResource('products', ProductController::class);
 Route::apiResource('employees', EmployeeController::class);
 
+Route::post('/admin/login', [AdminController::class, 'login']);
+
+Route::get('/admin/coffee', [AdminController::class, 'index']);
+Route::post('/admin/coffee', [AdminController::class, 'store']);
+Route::put('/admin/coffee/{id}', [AdminController::class, 'update']);
+Route::delete('/admin/coffee/{id}', [AdminController::class, 'destroy']);
