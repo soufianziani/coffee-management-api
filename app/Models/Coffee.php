@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Coffee extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'location'];
+    protected $fillable = ['name', 'locations'];
 
     public function tables()
     {
