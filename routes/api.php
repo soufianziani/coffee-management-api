@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -22,11 +23,18 @@ Route::get('/test', function (){
 
 Route::apiResource('categories', CategoryController::class);
 Route::apiResource('products', ProductController::class);
-Route::apiResource('employees', EmployeeController::class);
 
 Route::post('/admin/login', [AdminController::class, 'login']);
 
-Route::get('/admin/coffee', [AdminController::class, 'index']);
-Route::post('/admin/coffee', [AdminController::class, 'store']);
-Route::put('/admin/coffee/{id}', [AdminController::class, 'update']);
-Route::delete('/admin/coffee/{id}', [AdminController::class, 'destroy']);
+
+Route::apiResource('employees', EmployeeController::class);
+Route::apiResource('coffee', CoffeeController::class);
+
+
+Route::middleware(AdminMiddleware::class)->group(function () {
+    Route::apiResource('employees', EmployeeController::class);
+    Route::apiResource('coffee', CoffeeController::class);
+    Route::apiResource('table', TableController::class);
+    Route::post('/admin/logout', [AdminController::class, 'logout']);
+
+});

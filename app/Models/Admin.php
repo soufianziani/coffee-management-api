@@ -11,14 +11,12 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 class Admin extends Authenticatable implements AuthenticatableContract
 {
     use HasFactory;
-use HasApiTokens;
+    use HasApiTokens;
 protected $fillable = [
     'name',
     'email',
     'password',
 ];
-
-
 
 }
 
